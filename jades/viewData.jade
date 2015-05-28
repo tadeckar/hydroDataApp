@@ -1,0 +1,21 @@
+.table-responsive(ng-init="getData()")
+    table.table.table-condensed.table-bordered
+        thead
+            tr
+                td Date
+                td ph
+                td tds
+                td FloraGro
+                td FloraBloom
+                td FloraMicro
+                td Calcium
+        tbody
+            tr(ng-repeat="i in resChangeData track by $index")
+                td {{i.date}}
+                td {{i.ph}}
+                td {{i.tds}}
+                td {{i.floraGro}}
+                td {{i.floraBloom}}
+                td {{i.floraMicro}}
+                td {{i.calcium}}
+    

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    #mainContainer.container-fluid(ng-app="hydroDataAppModule" ng-controller="mainController")
+        #titleHeader 
+            h1 Hydroponic Garden Data
+        button.btn.btn-default#backBtn(ng-click="changeView('')" ng-show="getLoc() !== '/'")
+            i.glyphicon.glyphicon-arrow-left
+        .container-fluid(ng-view)

@@ -1,0 +1,25 @@
+br
+br
+.form
+    .form-group
+        label(for="phInput") ph
+        input.form-control#phInput(type="number" ng-model="ph")
+    .form-group
+        label(for="tdsInput") TDS
+        input.form-control#tdsInput(type="number" ng-model="tds")
+    .form-group
+        label(for="floraGroInput") FloraGro
+        input.form-control#floraGroInput(type="number" ng-model="floraGro")
+    .form-group
+        label(for="floraBloomInput") FloraBloom
+        input.form-control#floraBloomInput(type="number" ng-model="floraBloom")
+    .form-group
+        label(for="floraMicroInput") FloraMicro
+        input.form-control#floraMicroInput(type="number" ng-model="floraMicro")
+    .form-group
+        label(for="calciumInput") Calcium
+        input.form-control#calciumInput(type="number" ng-model="calcium")
+    button.btn.btn-primary.pull-right(ng-click="submitData();changeView('')") Submit
+br
+br
+    
