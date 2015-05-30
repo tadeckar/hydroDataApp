@@ -24,7 +24,7 @@ textarea {
 }
 
 #titleHeader {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -41,7 +41,7 @@ textarea {
 }
 
 #backBtn {
-    position: fixed;
+    position: absolute;
     top: 60px;
     right: 45px;
 }

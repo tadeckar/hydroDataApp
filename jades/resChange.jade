@@ -2,24 +2,51 @@ br
 br
 .form
     .form-group
+        label(for="selectGrowthStageInput") Growth Stage
+        select.form-control#selectGrowthStageInput(ng-model="selectedGrowthType" ng-change="calculateNutes()")
+            option(ng-repeat="i in growthChart") {{i.growthType}}
+    .form-group
+        label(for="galInput") # of Gallons
+        input.form-control#galInput(type="number" ng-model="gallons" ng-change="calculateNutes()")
+    .form-group
         label(for="phInput") ph
         input.form-control#phInput(type="number" ng-model="ph")
     .form-group
-        label(for="tdsInput") TDS
+        label(for="tdsInput") TDS (in ppm)
         input.form-control#tdsInput(type="number" ng-model="tds")
     .form-group
-        label(for="floraGroInput") FloraGro
-        input.form-control#floraGroInput(type="number" ng-model="floraGro")
+        label(for="floraGroInput") 
+            | FloraGro (in 
+            a(ng-click="convertToMLs(floraGro, 'floraGro')" ng-show="units.floraGro === 'cups'") {{units.floraGro}}
+            a(ng-click="convertToCups(floraGro, 'floraGro')" ng-show="units.floraGro === 'mLs'") {{units.floraGro}}
+            | )
+        input.form-control#floraGroInput(type="number" ng-model="floraGro.value")
     .form-group
-        label(for="floraBloomInput") FloraBloom
-        input.form-control#floraBloomInput(type="number" ng-model="floraBloom")
+        label(for="floraBloomInput") 
+            | FloraBloom (in 
+            a(ng-click="convertToMLs(floraBloom, 'floraBloom')" ng-show="units.floraBloom === 'cups'") {{units.floraBloom}}
+            a(ng-click="convertToCups(floraBloom, 'floraBloom')" ng-show="units.floraBloom === 'mLs'") {{units.floraBloom}}
+            | )
+        input.form-control#floraBloomInput(type="number" ng-model="floraBloom.value")
     .form-group
-        label(for="floraMicroInput") FloraMicro
-        input.form-control#floraMicroInput(type="number" ng-model="floraMicro")
+        label(for="floraMicroInput") 
+            | FloraMicro (in 
+            a(ng-click="convertToMLs(floraMicro, 'floraMicro')" ng-show="units.floraMicro === 'cups'") {{units.floraMicro}}
+            a(ng-click="convertToCups(floraMicro, 'floraMicro')" ng-show="units.floraMicro === 'mLs'") {{units.floraMicro}}
+            | )
+        input.form-control#floraMicroInput(type="number" ng-model="floraMicro.value")
     .form-group
-        label(for="calciumInput") Calcium
-        input.form-control#calciumInput(type="number" ng-model="calcium")
+        label(for="calciumInput")
+            | Calcium (in 
+            a(ng-click="convertToMLs(calcium, 'calcium')" ng-show="units.calcium === 'cups'") {{units.calcium}}
+            a(ng-click="convertToCups(calcium, 'calcium')" ng-show="units.calcium === 'mLs'") {{units.calcium}}
+            | )
+        input.form-control#calciumInput(type="number" ng-model="calcium.value")
     button.btn.btn-primary.pull-right(ng-click="submitData();changeView('')") Submit
 br
 br
-    
+br
+br
+br
+br
+br    

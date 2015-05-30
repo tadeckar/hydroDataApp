@@ -3,19 +3,36 @@
         thead
             tr
                 td Date
+                td # Gallons
                 td ph
                 td tds
                 td FloraGro
                 td FloraBloom
                 td FloraMicro
                 td Calcium
+                td
         tbody
             tr(ng-repeat="i in resChangeData track by $index")
                 td {{i.date}}
+                td {{i.gallons}}
                 td {{i.ph}}
-                td {{i.tds}}
-                td {{i.floraGro}}
-                td {{i.floraBloom}}
-                td {{i.floraMicro}}
-                td {{i.calcium}}
-    
+                td {{i.tds}} ppm
+                td 
+                    | {{i.floraGro}} 
+                    a(ng-click="i.floraGro = i.floraGro * 240; i['units[floraGro]'] = 'mLs';" ng-show="i['units[floraGro]'] === 'cups'") {{i['units[floraGro]']}}
+                    a(ng-click="i.floraGro = i.floraGro / 240; i['units[floraGro]'] = 'cups';" ng-show="i['units[floraGro]'] === 'mLs'") {{i['units[floraGro]']}}
+                td 
+                    | {{i.floraBloom}} 
+                    a(ng-click="i.floraBloom = i.floraBloom * 240; i['units[floraBloom]'] = 'mLs';" ng-show="i['units[floraBloom]'] === 'cups'") {{i['units[floraBloom]']}}
+                    a(ng-click="i.floraBloom = i.floraBloom / 240; i['units[floraBloom]'] = 'cups';" ng-show="i['units[floraBloom]'] === 'mLs'") {{i['units[floraBloom]']}}
+                td 
+                    | {{i.floraMicro}} 
+                    a(ng-click="i.floraMicro = i.floraMicro * 240; i['units[floraMicro]'] = 'mLs';" ng-show="i['units[floraMicro]'] === 'cups'") {{i['units[floraMicro]']}}
+                    a(ng-click="i.floraMicro = i.floraMicro / 240; i['units[floraMicro]'] = 'cups';" ng-show="i['units[floraMicro]'] === 'mLs'") {{i['units[floraMicro]']}}
+                td 
+                    | {{i.calcium}} 
+                    a(ng-click="i.calcium = i.calcium * 240; i['units[calcium]'] = 'mLs';" ng-show="i['units[calcium]'] === 'cups'") {{i['units[calcium]']}}
+                    a(ng-click="i.calcium = i.calcium / 240; i['units[calcium]'] = 'cups';" ng-show="i['units[calcium]'] === 'mLs'") {{i['units[calcium]']}}
+                td(style="text-align:center")
+                    button.btn.btn-primary(ng-click="editResChange(i)")
+                        i.glyphicon.glyphicon-edit

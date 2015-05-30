@@ -24,4 +24,15 @@ router.get('/getData', function (req,res,next) {
     });
 });
 
+/* update res change data */
+router.post('/resChangeUpdate/:id', function (req, res, next) {
+    var db = req.db;
+    var update = req.params.id;
+    db.collection('resChange').updateById(update, req.body, function(err, result) {
+		res.send(
+			(err === null) ? {msg: 'success'} : {msg: err}
+		);
+    });
+});
+
 module.exports = router;

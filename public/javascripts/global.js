@@ -82,9 +82,24 @@ angular.module('hydroDataAppModule', [
 	  }];
 }).
 config(['$routeProvider', function($routeProvider) {
-	$routeProvider.when('/viewData', {templateUrl: 'partials/viewData.html', controller: 'mainController'})
-	$routeProvider.when('/resChange', {templateUrl: 'partials/resChange.html', controller: 'mainController'})
-    $routeProvider.when('/', {templateUrl: 'partials/menu.html', controller: 'mainController'})
+	$routeProvider.when('/viewData', {templateUrl: 'partials/viewData.html', controller: 'viewDataController'})
+	$routeProvider.when('/resChange', {templateUrl: 'partials/resChange.html', controller: 'resChangeController'})
+    $routeProvider.when('/', {templateUrl: 'partials/menu.html', controller: 'resChangeController'})
 	// Anything else, go to home.
 	$routeProvider.otherwise({redirectTo: '/'});
-}]);
+}]).service('passResChangeToEdit', function () {
+	var resChange = {};
+
+	function setResChange (obj) {
+		resChange = obj;
+	}
+
+	function getResChange () {
+		return resChange;
+	}
+
+	return {
+		setResChange: setResChange,
+		getResChange: getResChange
+	};
+});
