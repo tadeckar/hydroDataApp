@@ -3,7 +3,7 @@
 ## To install
 
 1. You need to install [Node.js](https://nodejs.org/download/)
-2. Clone this repo.
+2. Clone this repo. (`git clone https://github.com/tadeckar/hydroDataApp.git`)
 3. In a terminal, `cd hydroDataApp`
 4. To start the database:
   * If on Mac, use the command:
