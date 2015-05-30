@@ -85,6 +85,14 @@ controller('resChangeController', ['$scope', '$location', '$window', '$document'
                 mlPerGalCalcium = val.mlPerGalCalcium;
             }
         });
+
+        $scope.units = {
+            floraGro: $scope.editingFloraGroUnits || 'cups',
+            floraBloom: $scope.editingFloraBloomUnits || 'cups',
+            floraMicro: $scope.editingFloraMicroUnits || 'cups',
+            calcium: $scope.editingCalciumUnits || 'mLs'
+        }
+        
         $scope.floraGro.value = ($scope.gallons * mlPerGalGro) / 240;
         $scope.floraBloom.value = ($scope.gallons * mlPerGalBloom) / 240;
         $scope.floraMicro.value = ($scope.gallons * mlPerGalMicro) / 240;
