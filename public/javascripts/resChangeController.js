@@ -161,6 +161,11 @@ controller('resChangeController', ['$scope', '$location', '$window', '$document'
     });
 
     $scope.clearController = function () {
+        if ($scope.isEditing) {
+            $scope.changeView('viewData');
+        } else {
+            $scope.changeView('');
+        }
         $scope.isEditing = false;
         $scope.gallons = '';
         $scope.ph = '';
