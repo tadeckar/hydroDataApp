@@ -1,0 +1,41 @@
+.imageAlbumsList(ng-init="getImageAlbums()" ng-show="!viewingAlbum && !viewingMovie")
+    .row
+        .col-lg-4
+            .imageAlbumItem(ng-repeat="i in albums")
+                button.btn.btn-default.btn-lg.btn-block(ng-click="getImageData(i._id, i.albumName)") {{i.albumName}}
+    .row
+        .col-lg-4.dropdown(dropdown auto-close="outsideClick" is-open="isAddAlbumDropdownOpen")
+            button.btn.btn-default.btn-lg.btn-block.dropdown-toggle(dropdown-toggle)
+                i.glyphicon.glyphicon-plus
+            ul.dropdown-menu#addNewAlbumMenu
+                li
+                    h4#addNewAlbumMenuHeader Album Name:
+                    input.form-control(type="text" ng-model="newAlbumNameInput")
+                    button.btn.btn-primary.btn-block(ng-click="addNewAlbum()") Add Album
+                
+
+#viewImagesNavBar(ng-show="viewingAlbum || viewingMovie")
+    button.btn.btn-default(ng-click="viewingAlbum = false; viewingMovie = false;") Albums
+    button.btn.btn-default(ng-click="viewingMovie = true; viewingAlbum = false;" ng-show="!viewingMovie")
+        i.glyphicon.glyphicon-leaf
+    button.btn.btn-default(ng-click="viewingMovie = false; viewingAlbum = true;" ng-show="viewingMovie")
+        i.glyphicon.glyphicon-picture
+
+#album(ng-show="viewingAlbum")
+    h1#albumHeader {{thisAlbum}}
+    .imageList
+        .imageListItem(ng-repeat="i in images")
+            img.gardenImage(ng-src="uploads/{{i.fileName}}")
+            h5 {{i.date}}
+        button.btn.btn-success.btn-lg.btn-block.fileUpload#addImageBtn
+            i.glyphicon.glyphicon-plus
+            input.upload(type="file" ngf-select ngf-change="upload($files)")
+        br
+        br
+        br
+        br
+        br
+
+#movieContainer(ng-if="viewingMovie" ng-init="createMovie()")
+    .movieItem(ng-repeat="i in images track by $index" ng-show="movieIndex === $index")
+        img#movie(ng-src="uploads/{{i.fileName}}")

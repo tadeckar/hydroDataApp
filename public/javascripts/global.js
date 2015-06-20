@@ -27,7 +27,8 @@ var catData = [];
 
 angular.module('hydroDataAppModule', [
 'ngRoute',
-'ui.bootstrap'
+'ui.bootstrap',
+'ngFileUpload'
 ], function($httpProvider) {
 	//disables caching (IE fix)
 	//initialize get if not there
@@ -84,6 +85,7 @@ angular.module('hydroDataAppModule', [
 config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/viewData', {templateUrl: 'partials/viewData.html', controller: 'viewDataController'})
 	$routeProvider.when('/resChange', {templateUrl: 'partials/resChange.html', controller: 'resChangeController'})
+	$routeProvider.when('/viewImages', {templateUrl: 'partials/viewImages.html', controller: 'viewImagesController'})
     $routeProvider.when('/', {templateUrl: 'partials/menu.html', controller: 'resChangeController'})
 	// Anything else, go to home.
 	$routeProvider.otherwise({redirectTo: '/'});
