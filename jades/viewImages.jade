@@ -22,11 +22,15 @@
         i.glyphicon.glyphicon-picture
 
 #album(ng-show="viewingAlbum")
-    h1#albumHeader {{thisAlbum}}
+    h1#albumHeader {{thisAlbum}} 
+        button.btn.btn-danger.pull-right(ng-click="deleteAlbum()")
+            i.glyphicon.glyphicon-trash
     .imageList
         .imageListItem(ng-repeat="i in images")
             img.gardenImage(ng-src="uploads/{{i.fileName}}")
-            h5 {{i.date}}
+            h5 {{i.date}} 
+                button.btn-btn-default(ng-click="deleteImage(i._id, i.fileName)")
+                    i.glyphicon.glyphicon-trash
         button.btn.btn-success.btn-lg.btn-block.fileUpload#addImageBtn
             i.glyphicon.glyphicon-plus
             input.upload(type="file" ngf-select ngf-change="upload($files)")

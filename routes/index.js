@@ -55,6 +55,26 @@ router.post('/addAlbum', function (req, res, next) {
     });
 });
 
+/* delete an album and its contents */
+router.post('/deleteAlbum/:albumId', function (req,res,next) {
+    var db = req.db;
+    var albumId = req.params.albumId;
+    var query = {'albumID':new ObjectID.createFromHexString(albumId)};
+    db.collection('gardenImages').find(query).toArray(function (err, items) {
+        items.forEach(function (val,i,array) {
+            var path = __dirname + '/../public/uploads/' + val.fileName;
+            fs.unlinkSync(path);
+        });
+        db.collection('gardenImages').remove(query, function (err, result) {
+            db.collection('imageAlbums').removeById(albumId, function (err, result) {
+                res.send(
+                    (err === null) ? {msg: 'success'} : {msg: err}
+                );
+            });
+        });
+    });
+});
+
 
 /* get image data */
 router.get('/getImageData/:albumId', function (req,res,next) {
@@ -62,6 +82,19 @@ router.get('/getImageData/:albumId', function (req,res,next) {
     var albumId = req.params.albumId;
     db.collection('gardenImages').find({'albumID':new ObjectID.createFromHexString(albumId)}).toArray(function (err, items) {
         res.json(items);
+    });
+});
+
+/* delete an image */
+router.post('/deleteImage', function (req, res, next) {
+    var db = req.db;
+    var imgId = req.body.id;
+    var path = __dirname + '/../public/uploads/' + req.body.filename;
+    db.collection('gardenImages').removeById(imgId, function (err, result) {
+        fs.unlinkSync(path);
+        res.send(
+            (err === null) ? {msg: 'success'} : {msg: err}
+        )
     });
 });
 

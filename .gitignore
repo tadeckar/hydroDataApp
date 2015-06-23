@@ -1,1 +1,2 @@
-\mongodb-osx-x86_64-3.0.3\data\*
+/mongodb-osx-x86_64-3.0.3/*
+*/.DS_Store

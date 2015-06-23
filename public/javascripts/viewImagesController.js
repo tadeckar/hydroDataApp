@@ -74,4 +74,27 @@ controller('viewImagesController', ['$scope', '$location', '$window', '$document
         }
     };
 
+    $scope.deleteAlbum = function () {
+        var proceed = confirm("Are you sure you want to delete this album?");
+        if (!proceed) { return };
+        $http.post('/deleteAlbum/' + $scope.thisAlbumId).success(function (data) {
+            $scope.getImageAlbums();
+            $scope.viewingAlbum = false;
+            $scope.viewingMovie = false;
+        }).error(function (error) {
+            console.log(error);
+        });
+    };
+
+    $scope.deleteImage = function (id, filename) {
+        var proceed = confirm("Are you sure you want to delete this image?");
+        if (!proceed) { return };
+        var data = { 'id' : id, 'filename' : filename};
+        $http.post('/deleteImage', data).success(function (data) {
+            $scope.getImageData($scope.thisAlbumId, $scope.thisAlbum);
+        }).error(function (error) {
+            console.log(error);
+        });
+    };
+
 }]);
