@@ -12,6 +12,15 @@ textarea {
   font-size: 16px;
 }
 
+.parentScroller {
+    position: absolute;
+    top: 120px;
+    bottom: 40px;
+    right: 20px;
+    left: 20px;
+    overflow:auto;
+}
+
 #mainContainer {
     background-color: #46EB83;
     position: fixed;
